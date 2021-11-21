@@ -1,0 +1,17 @@
+{
+  "name": "instagram-post-downloader",
+  "version": "1.0.0",
+  "description": "Instagram Post Downloader API",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "author": "",
+  "license": "GPL",
+  "dependencies": {
+    "axios": "^0.24.0",
+    "cheerio": "^1.0.0-rc.10",
+    "express": "^4.17.1",
+    "valid-url": "^1.0.9"
+  }
+}

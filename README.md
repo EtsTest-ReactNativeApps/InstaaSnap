@@ -1,7 +1,7 @@
 ## IGPostDownloader &middot; [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
 ```
-1. IGPostDownloader is a Open Source IG Post Downloader.
+1. IGPostDownloader is a Open Source IG Post Downloader API.
 2. It's easy to use and deploy with no database and minimal configuration.  
 3. React frontend and cross-platform React Native app is coming soon. 
 4. IGPostDownloader is built with Node.js and Express.js. 

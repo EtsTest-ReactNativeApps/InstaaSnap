@@ -1,0 +1,197 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500&display=swap');
+
+html, body {
+  height: 100vh !important;
+  background-color: #f9f9f9;
+  padding: 0;
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+}
+
+div.divOne {
+	align-items: center;
+	background-color: #fff;
+	border: 2px solid rgba(34, 34, 34, 0.05);
+	border-radius: 40px;
+	box-sizing: border-box;
+	color: #000;
+	display: flex;
+	font-family: 'Poppins', sans-serif;
+	height: 74px;
+	line-height: 24px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 204px;
+	padding-left: 24px;
+	padding-right: 12px;
+	position: relative;
+	width: 650px;
+}
+
+input.divOneInput {
+	border: 0 solid #e5e7eb;
+	box-sizing: border-box;
+	color: #222;
+	cursor: text;
+	font-family: 'Poppins', sans-serif;
+	font-size: 18px;
+	line-height: inherit;
+	margin: 0;
+	padding: 0;
+	width: 90%;
+}
+
+input::placeholder,
+textarea::placeholder {
+	opacity: 1;
+	color: #9ca3af;
+}
+
+input.divOneInput:focus {
+	outline: none;
+}
+
+.divTwo {
+	display: none;
+}
+
+@media (max-width: 480px) {
+	input.divOneInput {
+		font-size: 18px;
+		width: 100%;
+	}
+	.divTwo {
+		display: block;
+	}
+	button.divOneBtn {
+		font-size: 14px;
+		height: 40px;
+		padding-left: 16px;
+		padding-right: 16px;
+	}
+	button.divTwoBtn,
+	div.divOne {
+		width: 90% !important;
+	}
+}
+
+button.divOneBtn {
+	align-items: center;
+	appearance: button;
+	background-color: transparent;
+	background-image: none;
+	border: 0 solid #e5e7eb;
+	border-radius: 40px;
+	box-sizing: border-box;
+	color: inherit;
+	cursor: pointer;
+	display: flex;
+	flex-shrink: 0;
+	font-family: 'Poppins', sans-serif;
+	font-size: 20px;
+	height: 56px;
+	justify-content: center;
+	line-height: inherit;
+	margin: 0;
+	padding: 0 24px;
+	position: relative;
+	text-align: center;
+	text-transform: none;
+	transition: all 0.2s;
+}
+
+button.divOneBtn:focus {
+	outline: none;
+}
+
+button.divOneBtn:before {
+	background-color: #fd0;
+	border-radius: 40px;
+	content: '';
+	display: inline-block;
+	height: 100%;
+	left: 0;
+	position: absolute;
+	top: 0;
+	transition: all 0.2s;
+	width: 100%;
+}
+
+button.divOneBtn:hover:before {
+	transform: scaleX(1.021) scaleY(1.041) perspective(1px);
+}
+
+@media (max-width: 700px) {
+	button.divOneBtn {
+		display: none;
+	}
+	.divTwo {
+		display: block;
+	}
+	button.divTwoBtn,
+	div.divOne {
+		width: 90% !important;
+	}
+}
+
+span.divBtnCommon {
+	border: 0 solid #e5e7eb;
+	box-sizing: border-box;
+	color: #000;
+	cursor: pointer;
+	display: inline-flex;
+	font-family: 'Poppins', sans-serif;
+	font-size: 20px;
+	line-height: 30px;
+	position: relative;
+	text-align: center;
+}
+
+span.divBtnCommon span {
+	border: 0 solid #e5e7eb;
+	box-sizing: border-box;
+}
+
+button.divTwoBtn {
+	align-items: center;
+	appearance: button;
+	background-color: transparent;
+	background-color: rgba(255, 221, 0, 1);
+	background-image: none;
+	border: 0 solid #e5e7eb;
+	border-radius: 40px;
+	box-sizing: border-box;
+	color: #000;
+	cursor: pointer;
+	display: flex;
+	font-family: 'Poppins', sans-serif;
+	font-size: 16px;
+	height: 55px;
+	justify-content: center;
+	line-height: 24px;
+	margin: 16px auto 0;
+	padding: 0 16px;
+	position: relative;
+	text-align: center;
+	text-transform: none;
+	transition: all 0.2s;
+	width: 80%;
+}
+
+span.divBtnCommon {
+	border: 0 solid #e5e7eb;
+	box-sizing: border-box;
+	color: #000;
+	cursor: pointer;
+	display: inline-flex;
+	font-family: 'Poppins', sans-serif;
+	line-height: 24px;
+	position: relative;
+	text-align: center;
+}
+
+span.divBtnCommon span {
+	border: 0 solid #e5e7eb;
+	box-sizing: border-box;
+}
+

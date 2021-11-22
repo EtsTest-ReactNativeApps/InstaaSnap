@@ -30,7 +30,7 @@ app.get('/', (req, res) => {
                 'scheme': 'https',
                 'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
                 'accept-encoding': 'deflate, br',
-                'accept-language': 'en-IN,en-GB;q=0.9,en-US;q=0.8,en;q=0.7,ar;q=0.6,he;q=0.5',
+                'accept-language': 'en-GB;q=0.9,en',
                 'cache-control': 'max-age=0',
                 'cookie': '',
                 'dnt': '1',

@@ -7,7 +7,6 @@ export default function Home() {
         <title>Instagram Post Downloader</title>
         <link rel='icon' href='/favicon.ico' />
       </Head>
-      <div className='public-page-wrap pt-192 xs:pt-120'>
         <div className='divOne'>
           <input placeholder='https://www.instagram.com/p/mrwuv6sso2r/' className='divOneInput' />
           <button className='divOneBtn'>
@@ -19,7 +18,6 @@ export default function Home() {
             <span className='divBtnCommon'><span>Download</span></span>
           </button>
         </div>
-      </div>
     </div>
   );
 }

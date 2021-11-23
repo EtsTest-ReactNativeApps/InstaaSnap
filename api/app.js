@@ -8,7 +8,7 @@ const uuid = require('uuid');
 const path = require('path');
 const findRemoveSync = require('find-remove');
 const app = express();
-app.use(cors({ origin: '*' }));
+app.use(cors({origin: '*' }));
 
 let outputFolder = path.join(__dirname, './output/');
 let uniqueUUID = null;
@@ -95,13 +95,13 @@ app.get('/', (req, res) => {
 									mediaName = Math.floor(Math.random() * 999999999999999999999) + '.mp4';
 									mediaURL = baseURL + uniqueUUID + '/' + mediaName;
 									outputPath = outputChildFolder + '/' + mediaName;
-									await downloadImage(res, mediaData.video_url, outputPath);
+									await downloadImage(res, data.video_url, outputPath);
 									insta.push(mediaURL);
 								} else {
 									mediaName = Math.floor(Math.random() * 999999999999999999999) + '.jpg';
 									mediaURL = baseURL + uniqueUUID + '/' + mediaName;
 									outputPath = outputChildFolder + '/' + mediaName;
-									await downloadImage(res, mediaData.display_url, outputPath);
+									await downloadImage(res, data.display_url, outputPath);
 									insta.push(mediaURL);
 								}
 							}
@@ -136,7 +136,7 @@ const makeDirectory = async (res, outputChildFolder) => {
 };
 
 const downloadImage = async (res, url, filepath) => {
-	const response = await axios({ url, method: 'GET', responseType: 'stream' });
+	let response = await axios({ url, method: 'GET', responseType: 'stream' });
 	return new Promise((resolve) => {
 		response.data
 			.pipe(fs.createWriteStream(filepath))

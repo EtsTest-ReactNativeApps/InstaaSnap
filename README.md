@@ -8,6 +8,11 @@
 5. InstaaSnap is fully maintained and will be available in future with all the updates.  
 ```
 
+## Screenshots
+
+![alt text](https://github.com/twoabd/InstaaSnap/blob/main/api/docs/instaasnap.mov?raw=true)   
+
+
 ## Authors
 
 * **Choudhary Abdullah** - API, Frontend - [LinkedIn](https://www.linkedin.com/in/abdullahchoudhary/)  

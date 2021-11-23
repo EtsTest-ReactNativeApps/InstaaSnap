@@ -94,7 +94,7 @@ app.get('/', (req, res) => {
 								if (data.is_video) {
 									mediaName = Math.floor(Math.random() * 999999999999999999999) + '.mp4';
 									mediaURL = baseURL + uniqueUUID + '/' + mediaName;
-									outputPath = outputChildFolder + '/'+ mediaName;
+									outputPath = outputChildFolder + '/' + mediaName;
 									await downloadImage(res, mediaData.video_url, outputPath);
 									insta.push(mediaURL);
 								} else {
@@ -106,7 +106,7 @@ app.get('/', (req, res) => {
 								}
 							}
 						}
-                        res.json({ mediaList: insta });
+						res.json({ mediaList: insta });
 					}
 				});
 			})
@@ -126,8 +126,11 @@ server.headersTimeout = 31 * 1000;
 const makeDirectory = async (res, outputChildFolder) => {
 	return new Promise((resolve) => {
 		fs.mkdir(outputChildFolder, { recursive: true }, (err) => {
-			if (err) { sendError(res, 'ErrorCode03') }
-			else { resolve() }
+			if (err) {
+				sendError(res, 'ErrorCode03');
+			} else {
+				resolve();
+			}
 		});
 	});
 };
@@ -143,6 +146,6 @@ const downloadImage = async (res, url, filepath) => {
 };
 
 const sendError = (res, error) => {
-    console.log(`Error is ${error}`);
-    res.json({ Error: error, mediaList: [] });
-}
+	console.log(`Error is ${error}`);
+	res.json({ Error: error, mediaList: [] });
+};

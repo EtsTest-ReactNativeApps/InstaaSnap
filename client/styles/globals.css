@@ -1,11 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500&display=swap');
 
 html {
-  height: 100vh !important;
-  background-color: #f9f9f9;
-  padding: 0;
-  margin: 0;
-  font-family: 'Poppins', sans-serif;
+	height: 100vh !important;
+	background-color: #f9f9f9;
+	padding: 0;
+	margin: 0;
+	font-family: 'Poppins', sans-serif;
 }
 
 div.divOne {
@@ -175,7 +175,8 @@ span.divBtnCommon span {
 	button.divTwoBtn {
 		height: 50px;
 	}
-	button.divTwoBtn, div.divOne {
+	button.divTwoBtn,
+	div.divOne {
 		width: 90% !important;
 		font-size: 16px;
 	}
@@ -201,5 +202,24 @@ span.divBtnCommon span {
 	button.divTwoBtn,
 	div.divOne {
 		width: 90% !important;
+	}
+}
+
+.hidespinner {
+	display: none;
+}
+
+.showspinner {
+	display: inline-block;
+	margin-left: 5px;
+	animation: spin 1s alternate-reverse infinite;
+}
+
+@keyframes spin {
+	from {
+		transform: rotate(0deg);
+	}
+	to {
+		transform: rotate(360deg);
 	}
 }

@@ -31,6 +31,6 @@ We use [SemVer](http://semver.org/) for versioning. For the versions available, 
 ```
 1. Add login cookie to api.js
 2. Serve output folder using Nginx and add correct Access-Control-Allow-Origin header.
-3. Change CORS from * to instaasnap.app
+3. Change CORS from * to instaasnap.app in app.js
 ```
 

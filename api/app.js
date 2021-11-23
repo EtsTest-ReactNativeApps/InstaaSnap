@@ -69,8 +69,7 @@ app.get('/', (req, res) => {
                     }
                 });
                 resolve({
-                    number: insta.length,
-                    list: insta,
+                    mediaList: insta,
                 });
             })
             .catch((err) => {

@@ -20,3 +20,17 @@
 * [React.js](https://nodejs.org) - Frontend Library
 * [Next.js](https://expressjs.com) - React Framework
 
+
+## Versioning
+
+We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/twoabd/CompressioWeb/tags). 
+
+
+## To-do list before deployment
+
+```
+1. Add login cookie to api.js
+2. Serve output folder using Nginx and add correct Access-Control-Allow-Origin header.
+3. Change CORS from * to instaasnap.app
+```
+

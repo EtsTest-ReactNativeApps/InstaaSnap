@@ -5,7 +5,7 @@ export default function Home() {
 	const fetchMedia = async (event) => {
 		event.preventDefault();
 		let postURL = event.target.postURL.value;
-		await axios.get('http://localhost:3001/?postURL=' + postURL)
+		await axios.get('http://localhost/?postURL=' + postURL)
 			.then(function (response) {
 				console.log(response.data);
 			})

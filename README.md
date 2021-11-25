@@ -26,6 +26,7 @@
 * [Express.js](https://expressjs.com) - Backend Framework
 * [React.js](https://nodejs.org) - Frontend Library
 * [Next.js](https://expressjs.com) - React Framework
+* [React Native](https://reactnative.dev) - Cross Plateform Apps
 
 
 ## Versioning
@@ -36,8 +37,9 @@ We use [SemVer](http://semver.org/) for versioning. For the versions available, 
 ## To-do list before deployment
 
 ```
-1. Add login cookie to api.js
+1. Add login cookie to webapi's and nativeapi's app.js
 2. Serve output folder using Nginx and add correct Access-Control-Allow-Origin header.
 3. Change CORS from * to instaasnap.app in app.js
+4. For React Native App, open XCode and Android Studio to do suitable adjustments like App Icons, Splash Screen, and Production Build.
 ```
 

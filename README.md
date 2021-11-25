@@ -10,7 +10,9 @@
 
 ## Screenshots
 
-![alt text](https://github.com/twoabd/InstaaSnap/blob/main/api/docs/instaasnap.gif?raw=true)   
+![alt text](https://github.com/twoabd/InstaaSnap/blob/main/webapp/docs/webapp.gif?raw=true)   
+
+![alt text](https://github.com/twoabd/InstaaSnap/blob/main/nativeapp/docs/nativeapp.gif?raw=true)
 
 
 ## Authors

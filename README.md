@@ -37,10 +37,9 @@ We use [SemVer](http://semver.org/) for versioning. For the versions available, 
 ## To-do list before deployment
 
 ```
-1. Add login cookie to webapi's and nativeapi's app.js
-2. Serve output folder using Nginx and add correct Access-Control-Allow-Origin header.
-3. Change CORS from * to instaasnap.app in app.js
-4. For React Native App, open XCode and Android Studio to do suitable adjustments like App Icons, Splash Screen, and Production Build.
+1. Add your IG Login Cookie to webapi's and nativeapi's app.js
+2. Change instaasnap.app to your domain everywhere.
+2. For React Native App, open XCode and Android Studio to do suitable adjustments like App Icons, Splash Screen, and Production Build.
 ```
 ## Deployment, API & Web
 
@@ -75,7 +74,7 @@ http {
 	tcp_nodelay on;
 	keepalive_timeout 65;
 	types_hash_max_size 2048;
-  client_max_body_size 20M;
+        client_max_body_size 20M;
 
 	include /etc/nginx/mime.types;
 	default_type application/octet-stream;
@@ -99,7 +98,7 @@ http {
 	gzip_comp_level 6;
 	gzip_buffers 16 8k;
 	gzip_http_version 1.1;
-  gzip_types 
+        gzip_types 
 	application/javascript application/rss+xml application/vnd.ms-fontobject application/x-font 
 	application/x-font-opentype application/x-font-otf application/x-font-truetype application/x-font-ttf 
 	application/x-javascript application/xhtml+xml application/xml font/opentype font/otf font/ttf 
@@ -160,9 +159,9 @@ server {
         proxy_read_timeout 30s;
     }
 
-	  # Output Folder
-    location /webapi/output {
-        root /var/www/downloaderexpert.com;
+    # Output Folder
+    location /output {
+        root /var/www/downloaderexpert.com/webapp;
     }
 
 }

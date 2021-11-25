@@ -1,5 +1,5 @@
 {
-  "name": "instagram-post-downloader-api",
+  "name": "InstaaSnapAPI",
   "version": "1.0.0",
   "description": "Instagram Post Downloader API",
   "main": "app.js",

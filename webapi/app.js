@@ -46,7 +46,7 @@ app.get('/', (req, res) => {
 			'accept-encoding': 'deflate, br',
 			'accept-language': 'en-GB;q=0.9,en',
 			'cache-control': 'max-age=0',
-			cookie: 'mid=YZpl5QAEAAHgCYmM-lARFsCw2H9A; ig_did=08EFF7FA-B4D6-4C68-89D8-0D8ABE07E757; ig_nrcb=1; csrftoken=nbjAHk0cjrFjy9qS0ULWwjoDrVXAUT4P; ds_user_id=48344910629; sessionid=48344910629%3AGw3FbWpN3KpLKp%3A9; shbid="2658\05448344910629\0541669045649:01f79d53048c28daadc8006aa6adfe0a678357591de38e8da22525667776f8a799edb5e7"; shbts="1637509649\05448344910629\0541669045649:01f74e1ef96029d2d4cd26d44d9dda9e4c4f115a273715706e3f185ddd9608ca7781ddea"; rur="ASH\05448344910629\0541669242660:01f77a793c0da23d46f96de5ef592c742836dc8d61d9ce1abe8b1f3e333c4756bf2f8db6"',
+			cookie: '',
 			dnt: '1',
 			'sec-ch-ua': '" Not A;Brand";v="99", "Chromium";v="96", "Google Chrome";v="96"',
 			'sec-ch-ua-mobile': '?0',

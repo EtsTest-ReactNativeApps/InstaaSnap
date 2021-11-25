@@ -198,4 +198,6 @@ nodemon app.js
 
 cd /var/www/downloaderexpert.com/webapp
 npm install
+npm run build
+npm start
 ```

@@ -1,7 +1,7 @@
 ## InstaaSnap &middot; [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
 ```
-1. InstaaSnap is a Open Source IG Post Downloader API, WebApp, iOS and Andoid app.
+1. InstaaSnap is a Open Source IG Post Saver API, WebApp, iOS and Andoid app.
 2. I created it to download cat and travel videos from IG.
 3. It's Privacy friendly, no database, no analytics, no logs, no cookies.
 4. InstaaSnap is built with Node.js, Express.js, React.js, Next.js and React Native. 

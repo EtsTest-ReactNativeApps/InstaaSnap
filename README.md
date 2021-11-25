@@ -2,7 +2,7 @@
 
 ```
 1. InstaaSnap is a Open Source IG Post Saver API, WebApp, iOS and Andoid app.
-2. I created it to download cat and travel videos from IG.
+2. I created it to save cat and travel videos from IG.
 3. It's Privacy friendly, no database, no analytics, no logs, no cookies.
 4. InstaaSnap is built with Node.js, Express.js, React.js, Next.js and React Native. 
 ```
@@ -111,19 +111,19 @@ http {
 #### Creating API Directory
 
 ```
-sudo mkdir -p /var/www/downloaderexpert.com/nativeapi
-sudo mkdir -p /var/www/downloaderexpert.com/webapi
-sudo mkdir -p /var/www/downloaderexpert.com/webapp
+sudo mkdir -p /var/www/instaasnap.app/nativeapi
+sudo mkdir -p /var/www/instaasnap.app/webapi
+sudo mkdir -p /var/www/instaasnap.app/webapp
 
-sudo chown -R www-data:www-data /var/www/downloaderexpert.com
-sudo chmod -R 755 /var/www/downloaderexpert.com
+sudo chown -R www-data:www-data /var/www/instaasnap.app
+sudo chmod -R 755 /var/www/instaasnap.app
 ```
 
 #### Creating Virtual Host
 ```
-sudo nano /etc/nginx/sites-available/downloaderexpert.com
+sudo nano /etc/nginx/sites-available/instaasnap.app
 server {
-    server_name downloaderexpert.com;
+    server_name instaasnap.app;
    
     # NativeAPI
     location /nativeapi {
@@ -160,11 +160,11 @@ server {
 
     # Output Folder
     location /output {
-        root /var/www/downloaderexpert.com/webapp;
+        root /var/www/instaasnap.app/webapp;
     }
 
 }
-sudo ln -s /etc/nginx/sites-available/downloaderexpert.com /etc/nginx/sites-enabled/
+sudo ln -s /etc/nginx/sites-available/instaasnap.app /etc/nginx/sites-enabled/
 sudo unlink /etc/nginx/sites-enabled/default
 sudo rm -rf /var/www/html
 sudo systemctl restart nginx
@@ -173,7 +173,7 @@ sudo systemctl restart nginx
 #### Installing SSL
 ```
 sudo apt install certbot python3-certbot-nginx -y
-sudo certbot --nginx -d downloaderexpert.com
+sudo certbot --nginx -d instaasnap.app
 sudo systemctl status certbot.timer
 sudo certbot renew --dry-run
 sudo systemctl restart nginx
@@ -181,20 +181,20 @@ sudo systemctl restart nginx
 
 #### Copy respective folder files to..
 ```
-/var/www/downloaderexpert.com/nativeapi/*
-/var/www/downloaderexpert.com/webapi/*
-/var/www/downloaderexpert.com/webapp/*
+/var/www/instaasnap.app/nativeapi/*
+/var/www/instaasnap.app/webapi/*
+/var/www/instaasnap.app/webapp/*
 
-cd /var/www/downloaderexpert.com/nativeapi
+cd /var/www/instaasnap.app/nativeapi
 npm install
 npm install nodemon -g
 nodemon app.js
 
-cd /var/www/downloaderexpert.com/webapi
+cd /var/www/instaasnap.app/webapi
 npm install
 nodemon app.js
 
-cd /var/www/downloaderexpert.com/webapp
+cd /var/www/instaasnap.app/webapp
 npm install
 npm run build
 npm start

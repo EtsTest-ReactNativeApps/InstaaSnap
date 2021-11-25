@@ -1,6 +1,6 @@
 {
-  "name": "InstaaSnap",
-  "version": "0.0.1",
+  "name": "nativeapp",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "android": "react-native run-android",
@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@react-native-community/cameraroll": "^4.1.2",
+    "@react-native-community/clipboard": "^1.5.1",
     "axios": "^0.24.0",
     "fbjs": "^0.8.18",
     "file-saver": "^2.0.5",

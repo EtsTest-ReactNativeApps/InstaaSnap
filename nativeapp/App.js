@@ -9,18 +9,23 @@ import {
   StyleSheet,
   TextInput,
   Alert,
-  LogBox,
+  Clipboard
 } from 'react-native';
 console.disableYellowBox = true;
 
 export default function InstaaSnsp() {
   const [textValue, setTextValue] = useState('');
 
+  const fetchCopiedText = async () => {
+    const text = await Clipboard.getString()
+    setTextValue(text);
+  }
+
   const fetchMedia = async event => {
     event.preventDefault();
     let postURL = textValue;
     await axios
-      .get('http://192.168.1.4:3001/?postURL=' + postURL)
+      .get('http://192.168.1.50:3001/?postURL=' + postURL)
       .then(async response => {
         if (response.data.mediaList.length === 1) {
           if (response.data.mediaList[0].search('.mp4') === -1) {
@@ -138,6 +143,7 @@ export default function InstaaSnsp() {
 
   return (
     <View style={styles.mainView}>
+      <Text style={styles.mainViewTitle}></Text>
       <View style={styles.viewOne}>
         <TextInput
           placeholder="https://www.instagram.com/p/mrwuv6sso2r/"
@@ -147,10 +153,16 @@ export default function InstaaSnsp() {
         />
       </View>
       <View style={styles.viewTwo}>
-        <TouchableOpacity onPress={fetchMedia} style={styles.viewTwoBtn}>
+        <TouchableOpacity onPress={ fetchCopiedText } style={styles.viewTwoBtn}>
+          <Text style={styles.viewTwoBtnText}>Copy From clipboard</Text>
+        </TouchableOpacity>
+      </View>
+      <View style={styles.viewTwo}>
+        <TouchableOpacity onPress={ fetchMedia } style={styles.viewTwoBtn}>
           <Text style={styles.viewTwoBtnText}>Download</Text>
         </TouchableOpacity>
       </View>
+      <Text style={styles.viewTwoTitle}>Save Public Instagram Post and Reels</Text>
     </View>
   );
 }
@@ -160,9 +172,28 @@ const styles = StyleSheet.create({
     backgroundColor: '#f9f9f9',
     flex: 1,
   },
+  mainViewTitle: {
+    marginTop: 180,
+    marginHorizontal: 35,
+    marginBottom:30,
+    textAlign: 'center',
+    color: '#000',
+    fontFamily: 'Poppins-Medium',
+    fontSize: 21,
+    lineHeight:35,
+  },
+  viewTwoTitle: {
+    marginTop: 12,
+    marginHorizontal: 35,
+    marginBottom:30,
+    textAlign: 'center',
+    color: '#222',
+    fontFamily: 'Poppins-Regular',
+    fontSize: 15,
+    lineHeight:25,
+  },
   viewOne: {
     backgroundColor: '#ffffff',
-    marginTop: 250,
     marginHorizontal: 25,
     paddingVertical: 20,
     borderRadius: 50,
@@ -179,14 +210,14 @@ const styles = StyleSheet.create({
     borderColor: '#000',
     marginTop: 15,
     marginHorizontal: 25,
-    paddingVertical: 20,
+    paddingVertical: 18,
     borderRadius: 50,
   },
   viewTwoBtn: {
     paddingHorizontal: 20,
   },
   viewTwoBtnText: {
-    fontFamily: 'Poppins-Regular',
+    fontFamily: 'Poppins-Medium',
     fontSize: 16,
     color: '#000',
     textAlign: 'center',

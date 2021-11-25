@@ -44,7 +44,7 @@ We use [SemVer](http://semver.org/) for versioning. For the versions available, 
 ```
 ## Deployment, API & Web
 
-#### Install Nginx (Currently v1.18.0) and NodeJ on Ubuntu 20.04
+#### Install Nginx and NodeJ 17 on Ubuntu 20.04
 ```
 sudo apt update
 sudo apt install nginx -y

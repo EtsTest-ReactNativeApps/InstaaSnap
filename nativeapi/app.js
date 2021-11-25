@@ -4,9 +4,9 @@ const cheerio = require('cheerio');
 const validUrl = require('valid-url');
 const cors = require('cors');
 const app = express();
-app.use(cors({origin: '*' }));
+app.use(cors({origin: 'https://instaasnap.app' }));
 
-app.get('/', (req, res) => {
+app.get('/nativeapi', (req, res) => {
 
     try {
         const urlList =  new Promise((resolve, reject) => {
@@ -82,7 +82,7 @@ app.get('/', (req, res) => {
     }
 });
 
-const server = app.listen(3001);
+const server = app.listen(3002);
 server.setTimeout(30 * 1000);
 server.keepAliveTimeout = 30 * 1000;
 server.headersTimeout = 31 * 1000;

@@ -11,12 +11,13 @@ export default function Home() {
 		event.preventDefault();
 		let postURL = event.target.postURL.value;
 		await axios
-			.get('http://localhost:3001/?postURL=' + postURL)
+			.get('https://instaasnap.app/webapi/?postURL=' + postURL)
 			.then(async (response) => {
 				if (response.data.mediaList.length === 1) {
 					let imageBlob = await fetch(response.data.mediaList[0]).then((response) => response.blob());
 					if (response.data.mediaList[0].search('.mp4') === -1) {
 						saveAs(imageBlob, Math.floor(Math.random() * 999999999999999999999) + '.jpg');
+                         setActive(false);
 					} else {
 						saveAs(imageBlob, Math.floor(Math.random() * 999999999999999999999) + '.mp4');
 						setActive(false);

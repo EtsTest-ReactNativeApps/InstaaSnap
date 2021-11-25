@@ -8,20 +8,20 @@ const uuid = require('uuid');
 const path = require('path');
 const findRemoveSync = require('find-remove');
 const app = express();
-app.use(cors({origin: '*' }));
+app.use(cors({origin: 'https://instaasnap.app' }));
 
 let outputFolder = path.join(__dirname, './output/');
 let uniqueUUID = null;
 let outputPath = null;
 let outputChildFolder = null;
-let baseURL = 'http://localhost/output/';
+let baseURL = 'https://instaasnap.app/output/';
 let mediaURL = null;
 
 setInterval(() => {
 	findRemoveSync(outputFolder, { age: { seconds: 3600 }, dir: '*' });
 }, 60000);
 
-app.get('/', (req, res) => {
+app.get('/webapi', (req, res) => {
 	try {
 		if (!req.query.postURL || !validUrl.isUri(req.query.postURL)) return res.end('Wrong Post URL');
 		urlMedia = req.query.postURL;

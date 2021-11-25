@@ -4,7 +4,7 @@
 1. InstaaSnap is a Open Source IG Post Downloader API, WebApp, iOS and Andoid app.
 2. I created it to download cat and travel videos from IG.
 3. It's Privacy friendly, no database, no analytics, no logs, no cookies.
-3. InstaaSnap is built with Node.js, Express.js, React.js, Next.js and React Native. 
+4. InstaaSnap is built with Node.js, Express.js, React.js, Next.js and React Native. 
 ```
 
 ## Screenshots

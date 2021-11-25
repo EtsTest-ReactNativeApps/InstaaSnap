@@ -25,7 +25,7 @@ export default function InstaaSnsp() {
     event.preventDefault();
     let postURL = textValue;
     await axios
-      .get('http://192.168.1.50:3001/?postURL=' + postURL)
+      .get('https://instaasnap.app/webapi/?postURL=' + postURL)
       .then(async response => {
         if (response.data.mediaList.length === 1) {
           if (response.data.mediaList[0].search('.mp4') === -1) {

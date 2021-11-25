@@ -1,8 +1,9 @@
 # OSX
+#
 .DS_Store
 
-
 # Xcode
+#
 build/
 *.pbxuser
 !default.pbxuser
@@ -19,10 +20,9 @@ DerivedData
 *.hmap
 *.ipa
 *.xcuserstate
-*.dSYM.zip
-
 
 # Android/IntelliJ
+#
 build/
 .idea
 .gradle
@@ -30,13 +30,11 @@ local.properties
 *.iml
 *.hprof
 
-
-# Nodejs
+# node.js
+#
 node_modules/
-package-lock.json
 npm-debug.log
 yarn-error.log
-
 
 # BUCK
 buck-out/
@@ -44,10 +42,19 @@ buck-out/
 *.keystore
 !debug.keystore
 
+# fastlane
+#
+# It is recommended to not store the screenshots in the git repo. Instead, use fastlane to re-generate the
+# screenshots whenever they are needed.
+# For more information about the recommended setup visit:
+# https://docs.fastlane.tools/best-practices/source-control/
+
+*/fastlane/report.xml
+*/fastlane/Preview.html
+*/fastlane/screenshots
 
 # Bundle artifact
 *.jsbundle
-
 
 # CocoaPods
 /ios/Pods/

@@ -1,36 +1,19 @@
-# Ignore This
+# General
 node_modules
 package-lock.json
+
+
+#WebApi
 output
+
+
+# Nextjs
 .next
-.DS_Store
 
-node_modules/**/*
-.expo/*
-npm-debug.*
-*.jks
-*.p8
-*.p12
-*.key
-*.mobileprovision
-*.orig.*
-web-build/
-package-lock.json
-# macOS
-.DS_Store
-ios/
-ios/*
-ios/main.jsbundle
-ios/**/*
-android/
-android/*
-android/**/*
-
-.vs/
-*.log
 
 # OSX
 .DS_Store
+
 
 # Xcode
 build/
@@ -49,7 +32,8 @@ DerivedData
 *.hmap
 *.ipa
 *.xcuserstate
-project.xcworkspace
+*.dSYM.zip
+
 
 # Android/IntelliJ
 build/
@@ -59,19 +43,23 @@ local.properties
 *.iml
 *.hprof
 
+
 # Nodejs
 node_modules/
 npm-debug.log
 yarn-error.log
 
-# Buck
+
+# BUCK
 buck-out/
 \.buckd/
 *.keystore
 !debug.keystore
 
-# Bundle artifacts
+
+# Bundle artifact
 *.jsbundle
+
 
 # CocoaPods
 /ios/Pods/

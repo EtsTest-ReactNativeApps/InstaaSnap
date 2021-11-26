@@ -7,6 +7,13 @@
 4. InstaaSnap is built with Node.js, Express.js, React.js, Next.js and React Native. 
 ```
 
+## Screenshots
+
+![alt text](https://github.com/twoabd/InstaaSnap/blob/main/webapp/docs/webapp.gif?raw=true)   
+
+![alt text](https://github.com/twoabd/InstaaSnap/blob/main/nativeapp/docs/nativeapp.gif?raw=true)
+
+
 ## Copyright?
 
 1. You can't download and use images you find on Instagram without the permission of the copyright owner. 
@@ -15,13 +22,6 @@
 4. No, if the image you're using is in the public domain.
 5. No, if the copyright owner has clearly stated that you may freely use the image without obtaining permission.
 6. No, if the image has a Creative Commons (CC) license.
-
-
-## Screenshots
-
-![alt text](https://github.com/twoabd/InstaaSnap/blob/main/webapp/docs/webapp.gif?raw=true)   
-
-![alt text](https://github.com/twoabd/InstaaSnap/blob/main/nativeapp/docs/nativeapp.gif?raw=true)
 
 
 ## Authors

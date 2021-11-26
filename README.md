@@ -210,9 +210,11 @@ npm run build
 npm start
 ```
 
-#### React Native 
+#### React Native
+```
 cd nativeapp
 npm i
 cd ios && pod install 
 npx react-native link
 npx react-native run-ios 
+```

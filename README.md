@@ -16,6 +16,7 @@
 5. No, if the copyright owner has clearly stated that you may freely use the image without obtaining permission.
 6. No, if the image has a Creative Commons (CC) license.
 
+
 ## Screenshots
 
 ![alt text](https://github.com/twoabd/InstaaSnap/blob/main/webapp/docs/webapp.gif?raw=true)   

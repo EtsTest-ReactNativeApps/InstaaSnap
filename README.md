@@ -15,14 +15,14 @@
 
 
 ## Copyright?
-
+```
 1. You can't download and use images you find on Instagram without the permission of the copyright owner. 
 2. Do you always need a permission?
 3. No, if the downloading and sharing comes under fair use and other exceptions to copyright.
 4. No, if the image you're using is in the public domain.
 5. No, if the copyright owner has clearly stated that you may freely use the image without obtaining permission.
 6. No, if the image has a Creative Commons (CC) license.
-
+```
 
 ## Authors
 

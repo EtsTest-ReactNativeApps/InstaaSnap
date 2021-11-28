@@ -1,7 +1,8 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import axios from 'axios';
 import RNFetchBlob from 'rn-fetch-blob';
 import CameraRoll from '@react-native-community/cameraroll';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import {
   View,
   Text,
@@ -9,16 +10,48 @@ import {
   StyleSheet,
   TextInput,
   Alert,
-  Clipboard
+  Clipboard,
+  Dimensions,
+  ScrollView
 } from 'react-native';
 console.disableYellowBox = true;
 
-export default function InstaaSnsp() {
+
+export default function InstaaSnap() {
+  
   const [textValue, setTextValue] = useState('');
+  const [isTosAccepted, setTosAccepted] = useState(null);
+
+  useEffect(() => {
+    const getData = async () => {
+      try {
+        const value = await AsyncStorage.getItem('alreadyAccepted');
+        if (value === 'true') {
+          setTosAccepted(true);
+        } else {
+          setTosAccepted(false);
+        }
+      } catch(e) {
+        console.log('error:', e)
+      }
+    }; getData();
+  },[])
+
+  const storeData = async () => {
+    try {
+      await AsyncStorage.setItem('alreadyAccepted', 'true');
+    } catch(e) {
+      console.log('error:', e)
+    }
+  }
 
   const fetchCopiedText = async () => {
-    const text = await Clipboard.getString()
-    setTextValue(text);
+    try {
+      const text = await Clipboard.getString()
+      setTextValue(text);
+    } catch(e) {
+      console.log('error:', e)
+    }
   }
 
   const fetchMedia = async event => {
@@ -121,7 +154,6 @@ export default function InstaaSnsp() {
                       }
                     })
                     .catch(err => {
-                      console.log(count);
                       if (count === maxCount) {
                         Alert.alert(
                           'Instagram Post Carousel',
@@ -141,7 +173,31 @@ export default function InstaaSnsp() {
       });
   };
 
-  return (
+  const submitTos = () => {
+    storeData();
+    setTosAccepted(true);
+  }
+
+  if (isTosAccepted === null) {
+    return null;
+  } else if (isTosAccepted === false) {
+    return (
+      <View style={styles.container}>
+        <ScrollView>
+        <Text style={styles.title}>Terms and conditions</Text>
+        <View style={styles.tosContainer}>
+          <Text style={styles.tosP}>Welcome to our InstaaSnap. If you continue to browse and use this app, you are agreeing to comply with and be bound by the following terms and conditions :</Text>
+          <Text style={styles.tosP}>We have no mechanism to check any copyright or other IP rights, on downloading file and content over the internet. It's the user's responsibility to check if the content you want to download is protected under any copyrights and make sure that you're allowed to download, copy and share the content.</Text>
+          <Text style={styles.tosP}>You're allowed to download, copy and share the content if saving and sharing comes under fair usage and other exceptions to copyright as defined by Instagram's fair usage and exceptions to copyright policy.</Text>
+          <Text style={styles.tosP}>You're allowed to download, copy and share the content if the copyright owner has clearly stated that you may freely use the image without obtaining permission.</Text>
+          <Text style={styles.tosP}>InstaaSnap does not backup/archive user content for any reason and doesn’t collect any of the user's information which makes using InstaaSnap totally anonymous.</Text>
+          <TouchableOpacity onPress={ submitTos } style={styles.button}><Text style={styles.buttonLabel}>Accept</Text></TouchableOpacity>
+        </View>
+        </ScrollView>
+      </View>
+    );
+  } else if (isTosAccepted === true) {
+    return (
     <View style={styles.mainView}>
       <Text style={styles.mainViewTitle}></Text>
       <View style={styles.viewOne}>
@@ -150,7 +206,7 @@ export default function InstaaSnsp() {
           style={styles.viewOneInput}
           value={textValue}
           onChangeText={setTextValue}
-        />
+        />                                                  
       </View>
       <View style={styles.viewTwo}>
         <TouchableOpacity onPress={ fetchCopiedText } style={styles.viewTwoBtn}>
@@ -164,16 +220,18 @@ export default function InstaaSnsp() {
       </View>
       <Text style={styles.viewTwoTitle}>Save Public Instagram Post and Reels</Text>
     </View>
-  );
+    );
+  }
 }
 
+const { height } = Dimensions.get('window');
 const styles = StyleSheet.create({
   mainView: {
     backgroundColor: '#f9f9f9',
     flex: 1,
   },
   mainViewTitle: {
-    marginTop: 180,
+    marginTop: height * 0.2,
     marginHorizontal: 35,
     marginBottom:30,
     textAlign: 'center',
@@ -222,4 +280,40 @@ const styles = StyleSheet.create({
     color: '#000',
     textAlign: 'center',
   },
+  container:{
+    flex: 1,
+    marginVertical: height * 0.15,
+  },
+  title: {
+      fontSize: 26,
+      alignSelf: 'flex-start',
+      fontFamily: 'Poppins-Medium',
+      marginHorizontal: 35
+  },
+  tosP: {
+      marginTop: 10,
+      marginBottom: 0,
+      fontSize: 16,
+      fontFamily: 'Poppins-Light',
+      marginHorizontal: 35
+  },
+  tosContainer: {
+      marginTop: 15,
+      marginBottom: 0,
+  },
+
+  button:{
+      marginHorizontal: 35,
+      marginTop: 35,
+      backgroundColor: '#ffdd00',
+      borderRadius: 50,
+      padding: 10
+  },
+
+  buttonLabel:{
+      fontSize: 16,
+      color: '#000',
+      alignSelf: 'center',
+      fontFamily: 'Poppins-Regular'
+  }
 });

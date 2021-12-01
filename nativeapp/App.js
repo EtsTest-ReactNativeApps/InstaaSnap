@@ -47,8 +47,17 @@ export default function InstaaSnap() {
 
   const fetchCopiedText = async () => {
     try {
-      const text = await Clipboard.getString()
-      setTextValue(text);
+      const text = await Clipboard.getString();
+      if (text.length === 0){
+        Alert.alert(
+          'Nothing in clipboard',
+          'Please copy the post link from Instagram then press the `Copy From Clipboard` button.',
+          [{text: 'OK', onPress: () => console.log('OK Pressed')}],
+          {cancelable: false},
+        );
+      } else {
+        setTextValue(text);
+      }
     } catch(e) {
       console.log('error:', e)
     }
@@ -60,7 +69,14 @@ export default function InstaaSnap() {
     await axios
       .get('https://instaasnap.app/webapi/?postURL=' + postURL)
       .then(async response => {
-        if (response.data.mediaList.length === 1) {
+        if (response.data === 'Wrong Post URL'){
+          Alert.alert(
+            'Wrong post URL',
+            'Please check post URL and submit again.',
+            [{text: 'OK', onPress: () => console.log('OK Pressed')}],
+            {cancelable: false},
+          );
+        } else if (response.data.mediaList.length === 1) {
           if (response.data.mediaList[0].search('.mp4') === -1) {
             RNFetchBlob.config({fileCache: true, appendExt: 'jpg'})
               .fetch('GET', response.data.mediaList[0])
@@ -68,16 +84,16 @@ export default function InstaaSnap() {
                 CameraRoll.save(res.data, 'photo')
                   .then(() => {
                     Alert.alert(
-                      'Instagram Post Image',
-                      'Image Saved Successfully',
+                      'Post saved successfully',
+                      'Thanks for using our app, we hope it helped you.',
                       [{text: 'OK', onPress: () => console.log('OK Pressed')}],
                       {cancelable: false},
                     );
                   })
                   .catch(err => {
                     Alert.alert(
-                      'Instagram Post Image',
-                      'Failed to Save Image',
+                      'Failed to save post',
+                      'Something went wrong, please try again later while we fix the issue.',
                       [{text: 'OK', onPress: () => console.log('OK Pressed')}],
                       {cancelable: false},
                     );
@@ -90,16 +106,16 @@ export default function InstaaSnap() {
                 CameraRoll.save(res.data, 'video')
                   .then(() => {
                     Alert.alert(
-                      'Instagram Post Video',
-                      'Media Saved Successfully',
+                      'Post saved successfully',
+                      'Thanks for using our app, we hope it helped you.',
                       [{text: 'OK', onPress: () => console.log('OK Pressed')}],
                       {cancelable: false},
                     );
                   })
                   .catch(err => {
                     Alert.alert(
-                      'Instagram Post Video',
-                      'Failed to save Video',
+                      'Failed to save post',
+                      'Something went wrong, please try again later while we fix the issue.',
                       [{text: 'OK', onPress: () => console.log('OK Pressed')}],
                       {cancelable: false},
                     );
@@ -119,8 +135,8 @@ export default function InstaaSnap() {
                       count++;
                       if (count === maxCount) {
                         Alert.alert(
-                          'Instagram Post Carousel',
-                          'Media Saved Successfully',
+                          'Post saved successfully',
+                          'Thanks for using our app, we hope it helped you.',
                           [{text: 'OK', onPress: () => console.log('OK Pressed')}],
                           {cancelable: false},
                         );
@@ -129,8 +145,8 @@ export default function InstaaSnap() {
                     .catch(err => {
                       if (count === maxCount) {
                         Alert.alert(
-                          'Instagram Post Carousel',
-                          'Failed to Save Media',
+                          'Failed to save post',
+                          'Something went wrong, please try again later while we fix the issue.',
                           [{text: 'OK', onPress: () => console.log('OK Pressed')}],
                           {cancelable: false},
                         );
@@ -146,8 +162,8 @@ export default function InstaaSnap() {
                       count++;
                       if (count === maxCount) {
                         Alert.alert(
-                          'Instagram Post Carousel',
-                          'Media Saved Successfully',
+                          'Post saved successfully',
+                          'Thanks for using our app, we hope it helped you.',
                           [{text: 'OK', onPress: () => console.log('OK Pressed')}],
                           {cancelable: false},
                         );
@@ -156,8 +172,8 @@ export default function InstaaSnap() {
                     .catch(err => {
                       if (count === maxCount) {
                         Alert.alert(
-                          'Instagram Post Carousel',
-                          'Failed to Save Media',
+                          'Failed to save post',
+                          'Something went wrong, please try again later while we fix the issue.',
                           [{text: 'OK', onPress: () => console.log('OK Pressed')}],
                           {cancelable: false},
                         );
@@ -166,6 +182,13 @@ export default function InstaaSnap() {
                 });
             }
           }
+        } else {
+          Alert.alert(
+            'Something went wrong',
+            'Please check your post URL or try again later.',
+            [{text: 'OK', onPress: () => console.log('OK Pressed')}],
+            {cancelable: false},
+          );        
         }
       })
       .catch(error => {
@@ -210,7 +233,7 @@ export default function InstaaSnap() {
       </View>
       <View style={styles.viewTwo}>
         <TouchableOpacity onPress={ fetchCopiedText } style={styles.viewTwoBtn}>
-          <Text style={styles.viewTwoBtnText}>Copy From clipboard</Text>
+          <Text style={styles.viewTwoBtnText}>Copy From Clipboard</Text>
         </TouchableOpacity>
       </View>
       <View style={styles.viewTwo}>

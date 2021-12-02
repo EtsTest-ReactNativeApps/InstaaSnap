@@ -7,6 +7,7 @@ import {
   View,
   Text,
   TouchableOpacity,
+  ActivityIndicator,
   StyleSheet,
   TextInput,
   Alert,
@@ -21,6 +22,7 @@ export default function InstaaSnap() {
   
   const [textValue, setTextValue] = useState('');
   const [isTosAccepted, setTosAccepted] = useState(null);
+  const [indicator, setIndicator] = useState(false);
 
   useEffect(() => {
     const getData = async () => {
@@ -45,16 +47,51 @@ export default function InstaaSnap() {
     }
   }
 
-  const fetchCopiedText = async () => {
-    try {
-      const text = await Clipboard.getString();
-      if (text.length === 0){
+  const appAlert = async (alertReason) => {
+    setIndicator(false);
+    if (alertReason === 'emptyClipboard') {
+      Alert.alert(
+        'Nothing in clipboard',
+        'Please copy the post link from Instagram then press the `Copy From Clipboard` button.',
+        [{text: 'OK', onPress: () => console.log('OK Pressed')}],
+        {cancelable: false},
+      );
+    } else if (alertReason === 'wrongURL') {
         Alert.alert(
           'Nothing in clipboard',
           'Please copy the post link from Instagram then press the `Copy From Clipboard` button.',
           [{text: 'OK', onPress: () => console.log('OK Pressed')}],
           {cancelable: false},
         );
+    } else if (alertReason === 'saveSuccess') {
+      Alert.alert(
+        'Post saved successfully',
+        'Thanks for using our app, we hope it helped you.',
+        [{text: 'OK', onPress: () => console.log('OK Pressed')}],
+        {cancelable: false},
+      );
+    } else if (alertReason === 'saveFailed') {
+      Alert.alert(
+        'Failed to save post',
+        'Something went wrong, please try again later while we fix the issue.',
+        [{text: 'OK', onPress: () => console.log('OK Pressed')}],
+        {cancelable: false},
+      );
+    } else if (alertReason === 'somethingWentWrong') {
+      Alert.alert(
+        'Something went wrong',
+        'Please try again later while we fix the issue.',
+        [{text: 'OK', onPress: () => console.log('OK Pressed')}],
+        {cancelable: false},
+      );
+    }
+  }
+
+  const fetchCopiedText = async () => {
+    try {
+      const text = await Clipboard.getString();
+      if (text.length === 0){
+        appAlert('emptyClipboard');
       } else {
         setTextValue(text);
       }
@@ -63,19 +100,15 @@ export default function InstaaSnap() {
     }
   }
 
-  const fetchMedia = async event => {
-    event.preventDefault();
+  const fetchMedia = async () => {
+    setIndicator(true);
     let postURL = textValue;
     await axios
-      .get('https://instaasnap.app/webapi/?postURL=' + postURL)
+      .get('https://instaasnap.app/nativeapi/?postURL=' + postURL)
       .then(async response => {
+        console.log(response.data);
         if (response.data === 'Wrong Post URL'){
-          Alert.alert(
-            'Wrong post URL',
-            'Please check post URL and submit again.',
-            [{text: 'OK', onPress: () => console.log('OK Pressed')}],
-            {cancelable: false},
-          );
+          appAlert('wrongURL');
         } else if (response.data.mediaList.length === 1) {
           if (response.data.mediaList[0].search('.mp4') === -1) {
             RNFetchBlob.config({fileCache: true, appendExt: 'jpg'})
@@ -83,20 +116,10 @@ export default function InstaaSnap() {
               .then(res => {
                 CameraRoll.save(res.data, 'photo')
                   .then(() => {
-                    Alert.alert(
-                      'Post saved successfully',
-                      'Thanks for using our app, we hope it helped you.',
-                      [{text: 'OK', onPress: () => console.log('OK Pressed')}],
-                      {cancelable: false},
-                    );
+                    appAlert('saveSuccess');
                   })
                   .catch(err => {
-                    Alert.alert(
-                      'Failed to save post',
-                      'Something went wrong, please try again later while we fix the issue.',
-                      [{text: 'OK', onPress: () => console.log('OK Pressed')}],
-                      {cancelable: false},
-                    );
+                    appAlert('saveFailed');
                   });
               });
           } else {
@@ -105,20 +128,10 @@ export default function InstaaSnap() {
               .then(res => {
                 CameraRoll.save(res.data, 'video')
                   .then(() => {
-                    Alert.alert(
-                      'Post saved successfully',
-                      'Thanks for using our app, we hope it helped you.',
-                      [{text: 'OK', onPress: () => console.log('OK Pressed')}],
-                      {cancelable: false},
-                    );
+                    appAlert('saveSuccess');
                   })
                   .catch(err => {
-                    Alert.alert(
-                      'Failed to save post',
-                      'Something went wrong, please try again later while we fix the issue.',
-                      [{text: 'OK', onPress: () => console.log('OK Pressed')}],
-                      {cancelable: false},
-                    );
+                    appAlert('saveFailed');
                   });
               });
           }
@@ -134,22 +147,12 @@ export default function InstaaSnap() {
                     .then(() => {
                       count++;
                       if (count === maxCount) {
-                        Alert.alert(
-                          'Post saved successfully',
-                          'Thanks for using our app, we hope it helped you.',
-                          [{text: 'OK', onPress: () => console.log('OK Pressed')}],
-                          {cancelable: false},
-                        );
+                        appAlert('saveSuccess');
                       }
                     })
                     .catch(err => {
                       if (count === maxCount) {
-                        Alert.alert(
-                          'Failed to save post',
-                          'Something went wrong, please try again later while we fix the issue.',
-                          [{text: 'OK', onPress: () => console.log('OK Pressed')}],
-                          {cancelable: false},
-                        );
+                        appAlert('saveFailed');
                       }
                     });
                 });
@@ -161,34 +164,19 @@ export default function InstaaSnap() {
                     .then(() => {
                       count++;
                       if (count === maxCount) {
-                        Alert.alert(
-                          'Post saved successfully',
-                          'Thanks for using our app, we hope it helped you.',
-                          [{text: 'OK', onPress: () => console.log('OK Pressed')}],
-                          {cancelable: false},
-                        );
+                        appAlert('saveSuccess');
                       }
                     })
                     .catch(err => {
                       if (count === maxCount) {
-                        Alert.alert(
-                          'Failed to save post',
-                          'Something went wrong, please try again later while we fix the issue.',
-                          [{text: 'OK', onPress: () => console.log('OK Pressed')}],
-                          {cancelable: false},
-                        );
+                        appAlert('saveFailed');
                       }
                     });
                 });
             }
           }
         } else {
-          Alert.alert(
-            'Something went wrong',
-            'Please check your post URL or try again later.',
-            [{text: 'OK', onPress: () => console.log('OK Pressed')}],
-            {cancelable: false},
-          );        
+          appAlert('somethingWentWrong');        
         }
       })
       .catch(error => {
@@ -207,14 +195,14 @@ export default function InstaaSnap() {
     return (
       <View style={styles.container}>
         <ScrollView>
-        <Text style={styles.title}>Terms and conditions</Text>
+        <Text style={styles.tosTitle}>Terms and conditions</Text>
         <View style={styles.tosContainer}>
-          <Text style={styles.tosP}>Welcome to our InstaaSnap. If you continue to browse and use this app, you are agreeing to comply with and be bound by the following terms and conditions :</Text>
-          <Text style={styles.tosP}>We have no mechanism to check any copyright or other IP rights, on downloading file and content over the internet. It's the user's responsibility to check if the content you want to download is protected under any copyrights and make sure that you're allowed to download, copy and share the content.</Text>
-          <Text style={styles.tosP}>You're allowed to download, copy and share the content if saving and sharing comes under fair usage and other exceptions to copyright as defined by Instagram's fair usage and exceptions to copyright policy.</Text>
-          <Text style={styles.tosP}>You're allowed to download, copy and share the content if the copyright owner has clearly stated that you may freely use the image without obtaining permission.</Text>
-          <Text style={styles.tosP}>InstaaSnap does not backup/archive user content for any reason and doesn’t collect any of the user's information which makes using InstaaSnap totally anonymous.</Text>
-          <TouchableOpacity onPress={ submitTos } style={styles.button}><Text style={styles.buttonLabel}>Accept</Text></TouchableOpacity>
+          <Text style={styles.tosPara}>Welcome to our InstaaSnap. If you continue to browse and use this app, you are agreeing to comply with and be bound by the following terms and conditions :</Text>
+          <Text style={styles.tosPara}>We have no mechanism to check any copyright or other IP rights, on downloading file and content over the internet. It's the user's responsibility to check if the content you want to download is protected under any copyrights and make sure that you're allowed to download, copy and share the content.</Text>
+          <Text style={styles.tosPara}>You're allowed to download, copy and share the content if saving and sharing comes under fair usage and other exceptions to copyright as defined by Instagram's fair usage and exceptions to copyright policy.</Text>
+          <Text style={styles.tosPara}>You're allowed to download, copy and share the content if the copyright owner has clearly stated that you may freely use the image without obtaining permission.</Text>
+          <Text style={styles.tosPara}>InstaaSnap does not backup/archive user content for any reason and doesn’t collect any of the user's information which makes using InstaaSnap totally anonymous.</Text>
+          <TouchableOpacity onPress={ submitTos } style={styles.tosButton}><Text style={styles.buttonLabel}>Accept</Text></TouchableOpacity>
         </View>
         </ScrollView>
       </View>
@@ -238,10 +226,10 @@ export default function InstaaSnap() {
       </View>
       <View style={styles.viewTwo}>
         <TouchableOpacity onPress={ fetchMedia } style={styles.viewTwoBtn}>
-          <Text style={styles.viewTwoBtnText}>Download</Text>
+          <Text style={styles.viewTwoBtnText}>Download <ActivityIndicator style={styles.viewTwoBtnIndicator} size="small" color="black" animating={indicator} /></Text>
         </TouchableOpacity>
       </View>
-      <Text style={styles.viewTwoTitle}>Save Public Instagram Post and Reels</Text>
+      <Text style={styles.viewTwoTitle}>Save Public Instagram Post And Reels</Text>
     </View>
     );
   }
@@ -303,17 +291,21 @@ const styles = StyleSheet.create({
     color: '#000',
     textAlign: 'center',
   },
+  viewTwoBtnIndicator: {
+    marginRight: -25,
+    marginLeft: 5
+  },
   container:{
     flex: 1,
     marginVertical: height * 0.15,
   },
-  title: {
+  tosTitle: {
       fontSize: 26,
       alignSelf: 'flex-start',
       fontFamily: 'Poppins-Medium',
       marginHorizontal: 35
   },
-  tosP: {
+  tosPara: {
       marginTop: 10,
       marginBottom: 0,
       fontSize: 16,
@@ -325,7 +317,7 @@ const styles = StyleSheet.create({
       marginBottom: 0,
   },
 
-  button:{
+  tosButton:{
       marginHorizontal: 35,
       marginTop: 35,
       backgroundColor: '#ffdd00',

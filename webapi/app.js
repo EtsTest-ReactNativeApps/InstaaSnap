@@ -8,7 +8,7 @@ const uuid = require('uuid');
 const path = require('path');
 const findRemoveSync = require('find-remove');
 const app = express();
-app.use(cors({origin: 'https://instaasnap.app' }));
+app.use(cors({origin: 'https://instaasnap.app'}));
 
 let outputFolder = path.join(__dirname, './output/');
 let uniqueUUID = null;
@@ -18,7 +18,7 @@ let baseURL = 'https://instaasnap.app/output/';
 let mediaURL = null;
 
 setInterval(() => {
-	findRemoveSync(outputFolder, { age: { seconds: 3600 }, dir: '*' });
+	findRemoveSync(outputFolder, {age: {seconds: 3600}, dir: '*'});
 }, 60000);
 
 app.get('/webapi', (req, res) => {
@@ -59,7 +59,7 @@ app.get('/webapi', (req, res) => {
 		};
 
 		axios
-			.get(urlMedia, { headers: headers })
+			.get(urlMedia, {headers: headers})
 			.then((result) => {
 				let $ = cheerio.load(result.data),
 					insta = [];
@@ -106,7 +106,7 @@ app.get('/webapi', (req, res) => {
 								}
 							}
 						}
-						res.json({ mediaList: insta });
+						res.json({mediaList: insta});
 					}
 				});
 			})
@@ -125,7 +125,7 @@ server.headersTimeout = 31 * 1000;
 
 const makeDirectory = async (res, outputChildFolder) => {
 	return new Promise((resolve) => {
-		fs.mkdir(outputChildFolder, { recursive: true }, (err) => {
+		fs.mkdir(outputChildFolder, {recursive: true}, (err) => {
 			if (err) {
 				sendError(res, 'ErrorCode03');
 			} else {
@@ -136,7 +136,7 @@ const makeDirectory = async (res, outputChildFolder) => {
 };
 
 const downloadImage = async (res, url, filepath) => {
-	let response = await axios({ url, method: 'GET', responseType: 'stream' });
+	let response = await axios({url, method: 'GET', responseType: 'stream'});
 	return new Promise((resolve) => {
 		response.data
 			.pipe(fs.createWriteStream(filepath))
@@ -147,5 +147,5 @@ const downloadImage = async (res, url, filepath) => {
 
 const sendError = (res, error) => {
 	console.log(`Error is ${error}`);
-	res.json({ Error: error, mediaList: [] });
+	res.json({Error: error, mediaList: []});
 };

@@ -1,8 +1,8 @@
 import Head from 'next/head';
 import axios from 'axios';
-import { saveAs } from 'file-saver';
+import {saveAs} from 'file-saver';
 import JSZip from 'jszip';
-import { useState } from 'react';
+import {useState} from 'react';
 
 export default function Home() {
 	let [isActive, setActive] = useState(false);
@@ -17,7 +17,7 @@ export default function Home() {
 					let imageBlob = await fetch(response.data.mediaList[0]).then((response) => response.blob());
 					if (response.data.mediaList[0].search('.mp4') === -1) {
 						saveAs(imageBlob, Math.floor(Math.random() * 999999999999999999999) + '.jpg');
-                         setActive(false);
+						setActive(false);
 					} else {
 						saveAs(imageBlob, Math.floor(Math.random() * 999999999999999999999) + '.mp4');
 						setActive(false);
@@ -34,7 +34,7 @@ export default function Home() {
 						let imageBlob = await fetch(mediaFile).then((response) => response.blob());
 						folder.file(mediaName, imageBlob);
 					}
-					folder.generateAsync({ type: 'blob' }).then((content) => {
+					folder.generateAsync({type: 'blob'}).then((content) => {
 						saveAs(content, Math.floor(Math.random() * 999999999999999999999) + '.zip');
 						setActive(false);
 					});

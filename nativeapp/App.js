@@ -291,11 +291,11 @@ const styles = StyleSheet.create({
     borderColor: '#000',
     marginTop: 15,
     marginHorizontal: 25,
-    paddingVertical: 18,
     borderRadius: 50,
   },
   viewTwoBtn: {
     paddingHorizontal: 20,
+    paddingVertical: 18,
   },
   viewTwoBtnText: {
     fontFamily: 'Poppins-Medium',
@@ -330,7 +330,8 @@ const styles = StyleSheet.create({
       marginTop: 35,
       backgroundColor: '#ffdd00',
       borderRadius: 50,
-      padding: 10
+      paddingHorizontal: 10,
+      paddingVertical: 12,
   },
 
   buttonLabel:{

@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from 'react';
+import { PermissionsAndroid, Platform } from "react-native";
 import axios from 'axios';
 import RNFetchBlob from 'rn-fetch-blob';
 import CameraRoll from '@react-native-community/cameraroll';
@@ -45,6 +46,18 @@ export default function InstaaSnap() {
       console.log('error:', e);
     }
   };
+
+  const hasAndroidPermission = async () => {
+    const permission = PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE;
+  
+    const hasPermission = await PermissionsAndroid.check(permission);
+    if (hasPermission) {
+      return true;
+    }
+  
+    const status = await PermissionsAndroid.request(permission);
+    return status === 'granted';
+  }
 
   const appAlert = async alertReason => {
     setIndicator(false);
@@ -113,6 +126,9 @@ export default function InstaaSnap() {
             RNFetchBlob.config({fileCache: true, appendExt: 'jpg'})
               .fetch('GET', response.data.mediaList[0])
               .then(res => {
+                if (Platform.OS === 'android' && !(await hasAndroidPermission())) {
+                  return;
+                }
                 CameraRoll.save(res.data, 'photo')
                   .then(() => {
                     appAlert('saveSuccess');

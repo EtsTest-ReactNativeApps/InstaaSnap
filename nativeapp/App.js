@@ -180,6 +180,7 @@ export default function InstaaSnap() {
         }
       })
       .catch(error => {
+        appAlert('somethingWentWrong');   
         console.log(error);
       });
   };

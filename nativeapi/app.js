@@ -86,7 +86,7 @@ app.get('/nativeapi', (req, res) => {
 	}
 });
 
-const server = app.listen(3002);
+const server = app.listen(3004);
 server.setTimeout(30 * 1000);
 server.keepAliveTimeout = 30 * 1000;
 server.headersTimeout = 31 * 1000;

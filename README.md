@@ -197,7 +197,7 @@ sudo systemctl restart nginx
 
 cd /var/www/instaasnap.app/nativeapi
 npm install
-npm install nodemon -g
+npm install pm2 -g
 pm2 start app.js
 
 cd /var/www/instaasnap.app/webapi

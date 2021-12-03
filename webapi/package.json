@@ -1,6 +1,5 @@
 {
   "name": "InstaaSnapWebAPI",
-  "version": "1.0.1",
   "description": "Instagram Post Downloader API",
   "main": "app.js",
   "scripts": {

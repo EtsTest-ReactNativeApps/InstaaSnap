@@ -198,16 +198,16 @@ sudo systemctl restart nginx
 cd /var/www/instaasnap.app/nativeapi
 npm install
 npm install pm2 -g
-pm2 start app.js
+pm2 start app.js -n NativeAPI
 
 cd /var/www/instaasnap.app/webapi
 npm install
-pm2 start app.js
+pm2 start app.js -n WebAPI
 
 cd /var/www/instaasnap.app/webapp
 npm install
 npm run build
-npm start
+pm2 start npm -n WebApp -- start
 ```
 
 #### React Native

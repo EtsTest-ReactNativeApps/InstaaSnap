@@ -137,7 +137,7 @@ server {
    
     # NativeAPI
     location /nativeapi {
-        proxy_pass http://localhost:3002;
+        proxy_pass http://localhost:3004;
         proxy_http_version 1.1;
         proxy_set_header Upgrade $http_upgrade;
         proxy_set_header Connection 'upgrade';
@@ -148,7 +148,7 @@ server {
     
     # WebAPI
     location /webapi {
-        proxy_pass http://localhost:3001;
+        proxy_pass http://localhost:3003;
         proxy_http_version 1.1;
         proxy_set_header Upgrade $http_upgrade;
         proxy_set_header Connection 'upgrade';
@@ -159,7 +159,7 @@ server {
     
     # WebApp
     location / {
-        proxy_pass http://localhost:3000;
+        proxy_pass http://localhost:3002;
         proxy_http_version 1.1;
         proxy_set_header Upgrade $http_upgrade;
         proxy_set_header Connection 'upgrade';

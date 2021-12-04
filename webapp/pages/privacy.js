@@ -9,7 +9,7 @@ export default function Home() {
 			</Head>
       <div className="containerChild">
         <h1 className='heading'>Privacy Policy</h1>
-        <p className='paragraph'>1. At Downloader Expert, we care about your privacy.</p>
+        <p className='paragraph'>1. At InstaaSnap, we care about your privacy.</p>
         <p className='paragraph'>2. We believe in complete transparency.</p>
         <p className='paragraph'>3. We're committed to being upfront about our privacy practices.</p>
         <p className='paragraph'>4. We do not collect, store or save any information at all.</p>

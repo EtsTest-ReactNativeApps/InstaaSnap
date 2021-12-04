@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500&display=swap');
 
 html, body {
-	height: 100vh !important;
+	height: calc(100vh - 204px) !important;
 	background-color: #f9f9f9 !important;
 	padding: 0!important;
 	margin: 0!important;
@@ -173,7 +173,7 @@ span.divBtnCommon span {
 		padding-right: 24px;
 	}
 	button.divTwoBtn {
-		height: 50px;
+		height: 55px;
 	}
 	button.divTwoBtn,
 	div.divOne {

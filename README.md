@@ -175,7 +175,7 @@ server {
 
     # Output Folder
     location /output {
-        root /var/www/instaasnap.app/webapp;
+        root /var/www/instaasnap.app/webapi;
     }
 
 }

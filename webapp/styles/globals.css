@@ -1,11 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500&display=swap');
 
-html {
+html, body {
 	height: 100vh !important;
-	background-color: #f9f9f9;
-	padding: 0;
-	margin: 0;
-	font-family: 'Poppins', sans-serif;
+	background-color: #f9f9f9 !important;
+	padding: 0!important;
+	margin: 0!important;
+	font-family: 'Poppins', sans-serif !important;
 }
 
 div.divOne {
@@ -222,4 +222,30 @@ span.divBtnCommon span {
 	to {
 		transform: rotate(360deg);
 	}
+}
+
+.containerParent {
+	display: flex;
+	height: 100vh;
+	width: 100vw;
+	margin: 0 !important;
+	padding: 0 !important;
+}
+
+.containerChild {
+	align-self: center;
+	background-color: #e5e7eb;
+	margin: 0 6%;
+	padding: 40px;
+	border-radius: 20px;
+}
+
+.heading {
+	padding: 0 0 20px 0 !important;
+	margin: 0 !important;
+}
+
+.paragraph {
+	padding: 0 0 10px 0 !important;
+	margin: 0 !important;
 }

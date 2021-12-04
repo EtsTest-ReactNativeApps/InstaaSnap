@@ -68,10 +68,17 @@ export default function InstaaSnap() {
         [{text: 'OK', onPress: () => console.log('OK Pressed')}],
         {cancelable: false},
       );
+    } else if (alertReason === 'noPostLink') {
+      Alert.alert(
+        'Empty Input Field',
+        'Please copy the post link from Instagram then paste the link in the input field.',
+        [{text: 'OK', onPress: () => console.log('OK Pressed')}],
+        {cancelable: false},
+      );
     } else if (alertReason === 'wrongURL') {
       Alert.alert(
-        'Nothing in clipboard',
-        'Please copy the post link from Instagram then press the `Copy From Clipboard` button.',
+        'Wrong Post URL',
+        'Please provide correct Instagram post URL.',
         [{text: 'OK', onPress: () => console.log('OK Pressed')}],
         {cancelable: false},
       );
@@ -115,7 +122,10 @@ export default function InstaaSnap() {
   const fetchMedia = async () => {
     setIndicator(true);
     let postURL = textValue;
-    await axios
+    if (postURL.length === 0) {
+      appAlert('noPostLink');
+    } else {
+      await axios
       .get('https://instaasnap.app/nativeapi/?postURL=' + postURL)
       .then(async response => {
         console.log(response.data);
@@ -198,9 +208,10 @@ export default function InstaaSnap() {
         }
       })
       .catch(error => {
-        appAlert('somethingWentWrong');
         console.log(error);
+        appAlert('somethingWentWrong');
       });
+    }
   };
 
   const submitTos = () => {

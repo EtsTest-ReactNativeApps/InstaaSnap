@@ -53,7 +53,7 @@ export default function Home() {
 			</Head>
 			<form onSubmit={fetchMedia}>
 				<div className='divOne'>
-					<input id='postURL' name='postURL' placeholder='https://www.instagram.com/p/mrwuv6sso2r/' className='divOneInput' />
+					<input id='postURL' name='postURL' placeholder='https://www.instagram.com/p/mrwuv6sso2r/' className='divOneInput' required/>
 					<button className='divOneBtn' type='submit'>
 						<span className='divBtnCommon'>
 							Download

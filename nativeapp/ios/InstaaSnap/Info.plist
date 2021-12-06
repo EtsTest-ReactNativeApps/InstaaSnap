@@ -38,9 +38,9 @@
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string></string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
-	<string>Instagram Image Downloads</string>
+	<string>For Saving Instagram Post Media to Photo Library</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>Instagram Image Downloads</string>
+	<string>For Saving Instagram Post Media to Photo Library</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Poppins-ExtraLight.ttf</string>

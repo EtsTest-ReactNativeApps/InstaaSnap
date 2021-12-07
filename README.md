@@ -9,7 +9,7 @@
 
 ## Website
 
-[Compressio.app](https://instaasnap.app)
+[instaasnap.app](https://instaasnap.app)
 
 
 ## Screenshots

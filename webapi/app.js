@@ -6,9 +6,10 @@ const cors = require('cors');
 const fs = require('fs');
 const uuid = require('uuid');
 const path = require('path');
+const __dirname = path.resolve();
 const findRemoveSync = require('find-remove');
 const app = express();
-app.use(cors({origin: 'https://instaasnap.app'}));
+app.use(cors({ origin: 'https://instaasnap.app' }));
 
 let outputFolder = path.join(__dirname, './output/');
 let uniqueUUID = null;
@@ -16,9 +17,14 @@ let outputPath = null;
 let outputChildFolder = null;
 let baseURL = 'https://instaasnap.app/output/';
 let mediaURL = null;
+let urlMedia = null;
+let postId = null;
+let pathh = null;
+let toReplace = null;
+let mediaName = null;
 
 setInterval(() => {
-	findRemoveSync(outputFolder, {age: {seconds: 3600}, dir: '*'});
+	findRemoveSync(outputFolder, { age: { seconds: 3600 }, dir: '*' });
 }, 60000);
 
 app.get('/webapi', (req, res) => {
@@ -34,7 +40,7 @@ app.get('/webapi', (req, res) => {
 		postId = urlMedia.split('/')[4];
 
 		pathh = '/p/' + postId + '/';
-		toReplace = "window.__additionalDataLoaded('" + pathh + "',";
+		toReplace = 'window.__additionalDataLoaded(\'' + path + '\',';
 
 		let headers = {
 			authority: 'www.instagram.com',
@@ -59,7 +65,7 @@ app.get('/webapi', (req, res) => {
 		};
 
 		axios
-			.get(urlMedia, {headers: headers})
+			.get(urlMedia, { headers: headers })
 			.then((result) => {
 				let $ = cheerio.load(result.data),
 					insta = [];
@@ -76,13 +82,13 @@ app.get('/webapi', (req, res) => {
 						await makeDirectory(res, outputChildFolder);
 						if (!mediaData.edge_sidecar_to_children) {
 							if (mediaData.is_video) {
-								mediaName = Math.floor(Math.random() * 999999999999999999999) + '.mp4';
+								mediaName = Math.floor(Math.random() * Math.pow(15, 15)) + '.mp4';
 								mediaURL = baseURL + uniqueUUID + '/' + mediaName;
 								outputPath = outputChildFolder + '/' + mediaName;
 								await downloadImage(res, mediaData.video_url, outputPath);
 								insta.push(mediaURL);
 							} else {
-								mediaName = Math.floor(Math.random() * 999999999999999999999) + '.jpg';
+								mediaName = Math.floor(Math.random() * Math.pow(15, 15)) + '.jpg';
 								mediaURL = baseURL + uniqueUUID + '/' + mediaName;
 								outputPath = outputChildFolder + '/' + mediaName;
 								await downloadImage(res, mediaData.display_url, outputPath);
@@ -92,13 +98,13 @@ app.get('/webapi', (req, res) => {
 							for (var m of mediaData.edge_sidecar_to_children.edges) {
 								var data = m.node;
 								if (data.is_video) {
-									mediaName = Math.floor(Math.random() * 999999999999999999999) + '.mp4';
+									mediaName = Math.floor(Math.random() * Math.pow(15, 15)) + '.mp4';
 									mediaURL = baseURL + uniqueUUID + '/' + mediaName;
 									outputPath = outputChildFolder + '/' + mediaName;
 									await downloadImage(res, data.video_url, outputPath);
 									insta.push(mediaURL);
 								} else {
-									mediaName = Math.floor(Math.random() * 999999999999999999999) + '.jpg';
+									mediaName = Math.floor(Math.random() * Math.pow(15, 15)) + '.jpg';
 									mediaURL = baseURL + uniqueUUID + '/' + mediaName;
 									outputPath = outputChildFolder + '/' + mediaName;
 									await downloadImage(res, data.display_url, outputPath);
@@ -106,11 +112,11 @@ app.get('/webapi', (req, res) => {
 								}
 							}
 						}
-						res.json({mediaList: insta});
+						res.json({ mediaList: insta });
 					}
 				});
 			})
-			.catch((err) => {
+			.catch(() => {
 				sendError(res, 'ErrorCode01');
 			});
 	} catch (err) {
@@ -125,7 +131,7 @@ server.headersTimeout = 31 * 1000;
 
 const makeDirectory = async (res, outputChildFolder) => {
 	return new Promise((resolve) => {
-		fs.mkdir(outputChildFolder, {recursive: true}, (err) => {
+		fs.mkdir(outputChildFolder, { recursive: true }, (err) => {
 			if (err) {
 				sendError(res, 'ErrorCode03');
 			} else {
@@ -136,7 +142,7 @@ const makeDirectory = async (res, outputChildFolder) => {
 };
 
 const downloadImage = async (res, url, filepath) => {
-	let response = await axios({url, method: 'GET', responseType: 'stream'});
+	let response = await axios({ url, method: 'GET', responseType: 'stream' });
 	return new Promise((resolve) => {
 		response.data
 			.pipe(fs.createWriteStream(filepath))
@@ -147,5 +153,5 @@ const downloadImage = async (res, url, filepath) => {
 
 const sendError = (res, error) => {
 	console.log(`Error is ${error}`);
-	res.json({Error: error, mediaList: []});
+	res.json({ Error: error, mediaList: [] });
 };

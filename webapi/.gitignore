@@ -1,0 +1,9 @@
+# General
+node_modules
+package-lock.json
+
+#WebApi
+output
+
+# OSX
+.DS_Store

@@ -4,7 +4,12 @@ const cheerio = require('cheerio');
 const validUrl = require('valid-url');
 const cors = require('cors');
 const app = express();
-app.use(cors({origin: 'https://instaasnap.app'}));
+app.use(cors({ origin: 'https://instaasnap.app' }));
+
+let urlMedia = null;
+let postId = null;
+let path = null;
+let toReplace = null;
 
 app.get('/nativeapi', (req, res) => {
 	try {
@@ -20,7 +25,7 @@ app.get('/nativeapi', (req, res) => {
 			postId = urlMedia.split('/')[4];
 
 			path = '/p/' + postId + '/';
-			toReplace = "window.__additionalDataLoaded('" + path + "',";
+			toReplace = 'window.__additionalDataLoaded(\'' + path + '\',';
 
 			let headers = {
 				authority: 'www.instagram.com',
@@ -45,7 +50,7 @@ app.get('/nativeapi', (req, res) => {
 			};
 
 			axios
-				.get(urlMedia, {headers: headers})
+				.get(urlMedia, { headers: headers })
 				.then((result) => {
 					let $ = cheerio.load(result.data),
 						insta = [];
@@ -79,7 +84,7 @@ app.get('/nativeapi', (req, res) => {
 		});
 		urlList.then(
 			(success) => res.json(success),
-			(err) => sendError(res, err, 'ErrorCode01')
+			(err) => sendError(res, err, 'ErrorCode01'),
 		);
 	} catch (err) {
 		sendError(res, err, 'ErrorCode01');
@@ -94,5 +99,5 @@ server.headersTimeout = 31 * 1000;
 const sendError = (res, error, errorCode) => {
 	console.log(`Error is ${errorCode}`);
 	console.log(`Error is ${error}`);
-	res.json({Error: error, mediaList: []});
+	res.json({ Error: error, mediaList: [] });
 };

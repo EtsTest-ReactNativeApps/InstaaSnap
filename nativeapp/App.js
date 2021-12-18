@@ -143,7 +143,7 @@ export default function InstaaSnap() {
 										.then(() => {
 											appAlert('saveSuccess');
 										})
-										.catch((err) => {
+										.catch(() => {
 											appAlert('saveFailed');
 										});
 								});
@@ -155,7 +155,7 @@ export default function InstaaSnap() {
 										.then(() => {
 											appAlert('saveSuccess');
 										})
-										.catch((err) => {
+										.catch(() => {
 											appAlert('saveFailed');
 										});
 								});
@@ -175,7 +175,7 @@ export default function InstaaSnap() {
 													appAlert('saveSuccess');
 												}
 											})
-											.catch((err) => {
+											.catch(() => {
 												if (count === maxCount) {
 													appAlert('saveFailed');
 												}
@@ -192,7 +192,7 @@ export default function InstaaSnap() {
 													appAlert('saveSuccess');
 												}
 											})
-											.catch((err) => {
+											.catch(() => {
 												if (count === maxCount) {
 													appAlert('saveFailed');
 												}
@@ -230,19 +230,19 @@ export default function InstaaSnap() {
 						</Text>
 						<Text style={styles.tosPara}>
 							We have no mechanism to check any copyright or other IP rights, on downloading file and content over the internet.
-							It's the user's responsibility to check if the content you want to download is protected under any copyrights and
-							make sure that you're allowed to download, copy and share the content.
+							It&apos;s the user&apos;s responsibility to check if the content you want to download is protected under any copyrights and
+							make sure that you&apos;re allowed to download, copy and share the content.
 						</Text>
 						<Text style={styles.tosPara}>
-							You're allowed to download, copy and share the content if saving and sharing comes under fair usage and other
-							exceptions to copyright as defined by Instagram's fair usage and exceptions to copyright policy.
+							You&apos;re allowed to download, copy and share the content if saving and sharing comes under fair usage and other
+							exceptions to copyright as defined by Instagram&apos;s fair usage and exceptions to copyright policy.
 						</Text>
 						<Text style={styles.tosPara}>
-							You're allowed to download, copy and share the content if the copyright owner has clearly stated that you may
+							You&apos;re allowed to download, copy and share the content if the copyright owner has clearly stated that you may
 							freely use the image without obtaining permission.
 						</Text>
 						<Text style={styles.tosPara}>
-							InstaaSnap does not backup/archive user content for any reason and doesn’t collect any of the user's information
+							InstaaSnap does not backup/archive user content for any reason and doesn’t collect any of the user&apos;s information
 							which makes using InstaaSnap totally anonymous.
 						</Text>
 						<TouchableOpacity onPress={submitTos} style={styles.tosButton}>

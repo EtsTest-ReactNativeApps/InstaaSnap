@@ -1,13 +1,24 @@
 {
     "env": {
-        "browser": true,
-        "commonjs": true,
-        "es2021": true
+        "es2021": true,
+        "browser": true
     },
-    "extends": ["eslint:recommended", "prettier"],
+    "parser": "babel-eslint",
+    "extends": [
+        "eslint:recommended",
+        "plugin:react/recommended",
+        "prettier"
+    ],
     "parserOptions": {
-        "ecmaVersion": 13
+        "ecmaFeatures": {
+            "jsx": true
+        },
+        "ecmaVersion": 13,
+        "sourceType": "module"
     },
+    "plugins": [
+        "react"
+    ],
     "rules": {
         "indent": [
             "error",

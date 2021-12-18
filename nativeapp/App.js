@@ -230,8 +230,8 @@ export default function InstaaSnap() {
 						</Text>
 						<Text style={styles.tosPara}>
 							We have no mechanism to check any copyright or other IP rights, on downloading file and content over the internet.
-							It&apos;s the user&apos;s responsibility to check if the content you want to download is protected under any copyrights and
-							make sure that you&apos;re allowed to download, copy and share the content.
+							It&apos;s the user&apos;s responsibility to check if the content you want to download is protected under any
+							copyrights and make sure that you&apos;re allowed to download, copy and share the content.
 						</Text>
 						<Text style={styles.tosPara}>
 							You&apos;re allowed to download, copy and share the content if saving and sharing comes under fair usage and other
@@ -242,8 +242,8 @@ export default function InstaaSnap() {
 							freely use the image without obtaining permission.
 						</Text>
 						<Text style={styles.tosPara}>
-							InstaaSnap does not backup/archive user content for any reason and doesn’t collect any of the user&apos;s information
-							which makes using InstaaSnap totally anonymous.
+							InstaaSnap does not backup/archive user content for any reason and doesn’t collect any of the user&apos;s
+							information which makes using InstaaSnap totally anonymous.
 						</Text>
 						<TouchableOpacity onPress={submitTos} style={styles.tosButton}>
 							<Text style={styles.buttonLabel}>Accept</Text>

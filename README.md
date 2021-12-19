@@ -14,9 +14,9 @@
 
 ## Screenshots
 
-![alt text](https://github.com/twoabd/InstaaSnap/blob/main/webapp/docs/web-app.gif?raw=true)   
+![alt text](https://github.com/twoabd/InstaaSnap/blob/main/webapp/docs/webapp.gif?raw=true)   
 
-![alt text](https://github.com/twoabd/InstaaSnap/blob/main/nativeapp/docs/native-app.gif?raw=true)
+![alt text](https://github.com/twoabd/InstaaSnap/blob/main/nativeapp/docs/nativeapp.gif?raw=true)
 
 
 ## Copyright?
